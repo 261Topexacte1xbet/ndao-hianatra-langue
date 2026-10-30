@@ -16,59 +16,79 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-4 pb-24 max-w-md mx-auto font-sans">
+    <div style={{ minHeight: '100vh', backgroundColor: '#020617', color: '#ffffff', padding: '16px', paddingBottom: '96px', maxWidth: '440px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       {/* Header */}
-      <div className="py-4 border-b border-slate-800/60 mb-6 text-center">
-        <h1 className="text-xl font-black text-emerald-400">Ndao Hianatra Langue</h1>
-        <p className="text-xs text-slate-400 mt-1">Fandoavam-bola sy Fanavaozana Premium</p>
+      <div style={{ paddingBottom: '16px', borderBottom: '1px solid rgba(30, 41, 59, 0.6)', marginBottom: '24px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '20px', fontWeight: '900', color: '#34d399', margin: '0 0 4px 0' }}>Ndao Hianatra Langue</h1>
+        <p style={{ fontSize: '12px', color: '#94a3b8', margin: 0 }}>Fandoavam-bola sy Fanavaozana Premium</p>
       </div>
 
       {/* Main Container */}
-      <div className="space-y-6">
-        <div className="bg-slate-900 border border-slate-800 p-5 rounded-3xl shadow-xl space-y-4">
-          <h2 className="text-sm font-extrabold text-white uppercase tracking-wider">Safidio ny fomba handoavam-bola</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '20px', borderRadius: '24px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+          <h2 style={{ fontSize: '12px', fontWeight: '800', color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>Safidio ny fomba handoavam-bola</h2>
           
-          <div className="grid grid-cols-2 gap-3">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
             <button
               onClick={() => setSelectedMethod('mvola')}
-              className={`p-3 rounded-2xl font-extrabold text-xs border-2 transition-all ${
-                selectedMethod === 'mvola' 
-                  ? 'border-amber-500 bg-amber-500/20 text-amber-300' 
-                  : 'border-slate-800 bg-slate-800 text-slate-400'
-              }`}
+              style={{
+                padding: '12px',
+                borderRadius: '16px',
+                fontWeight: '800',
+                fontSize: '12px',
+                border: selectedMethod === 'mvola' ? '2px solid #f59e0b' : '2px solid #1e293b',
+                backgroundColor: selectedMethod === 'mvola' ? 'rgba(245, 158, 11, 0.2)' : '#1e293b',
+                color: selectedMethod === 'mvola' ? '#fcd34d' : '#94a3b8',
+                cursor: 'pointer'
+              }}
             >
-              📱 MVola
+              MVola
             </button>
             <button
               onClick={() => setSelectedMethod('orange')}
-              className={`p-3 rounded-2xl font-extrabold text-xs border-2 transition-all ${
-                selectedMethod === 'orange' 
-                  ? 'border-orange-500 bg-orange-500/20 text-orange-300' 
-                  : 'border-slate-800 bg-slate-800 text-slate-400'
-              }`}
+              style={{
+                padding: '12px',
+                borderRadius: '16px',
+                fontWeight: '800',
+                fontSize: '12px',
+                border: selectedMethod === 'orange' ? '2px solid #f97316' : '2px solid #1e293b',
+                backgroundColor: selectedMethod === 'orange' ? 'rgba(249, 115, 22, 0.2)' : '#1e293b',
+                color: selectedMethod === 'orange' ? '#fdba74' : '#94a3b8',
+                cursor: 'pointer'
+              }}
             >
-              🟠 Orange Money
+              Orange Money
             </button>
           </div>
 
           {/* Credentials Display */}
-          <div className="bg-slate-950/70 border border-slate-800/80 p-4 rounded-2xl space-y-3 mt-4">
+          <div style={{ backgroundColor: 'rgba(2, 6, 23, 0.7)', border: '1px solid rgba(30, 41, 59, 0.8)', padding: '16px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div>
-              <p className="text-[10px] text-slate-400 uppercase tracking-wider">Anaran'ny Tompony</p>
-              <p className="font-black text-white text-base mt-0.5">{accountName}</p>
+              <p style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 4px 0' }}>Anaran'ny Tompony</p>
+              <p style={{ fontWeight: '900', color: '#ffffff', fontSize: '16px', margin: 0 }}>{accountName}</p>
             </div>
 
             <div>
-              <p className="text-[10px] text-slate-400 uppercase tracking-wider">Laharana Finday</p>
-              <div className="flex justify-between items-center mt-1">
-                <span className="font-mono font-bold text-lg text-emerald-400">
+              <p style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 4px 0' }}>Laharana Finday</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'monospace', fontWeight: 'bold', fontSize: '18px', color: '#34d399' }}>
                   {selectedMethod === 'mvola' ? mvolaNumber : orangeNumber}
                 </span>
                 <button
                   onClick={() => handleCopy(selectedMethod === 'mvola' ? mvolaNumber : orangeNumber)}
-                  className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs px-3 py-1.5 rounded-xl transition-all shadow-md"
+                  style={{
+                    backgroundColor: '#34d399',
+                    color: '#020617',
+                    fontWeight: '900',
+                    fontSize: '12px',
+                    padding: '8px 12px',
+                    borderRadius: '12px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                  }}
                 >
-                  {copied ? '✅ Voikaika' : '📋 Mandika'}
+                  {copied ? 'Voikaika' : 'Mandika'}
                 </button>
               </div>
             </div>
@@ -76,9 +96,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Instructions */}
-        <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-3xl space-y-2">
-          <h3 className="text-xs font-extrabold text-emerald-400 uppercase tracking-wider">Toromarika:</h3>
-          <p className="text-xs text-slate-300 leading-relaxed">
+        <div style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid #1e293b', padding: '16px', borderRadius: '24px' }}>
+          <h3 style={{ fontSize: '12px', fontWeight: '800', color: '#34d399', textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 8px 0' }}>Toromarika:</h3>
+          <p style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.5', margin: 0 }}>
             1. Manaova fandefasana vola amin'ireo laharana voalaza etsy ambony.<br />
             2. Alefaso ny porofo na ny hafatra fanamafisana amin'ny mpandrindra mba hampavitrika ny kaontinao Premium.
           </p>
@@ -86,4 +106,4 @@ export default function DashboardPage() {
       </div>
     </div>
   );
-      }
+}
