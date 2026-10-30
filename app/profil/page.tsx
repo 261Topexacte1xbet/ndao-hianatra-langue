@@ -23,70 +23,81 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-4 pb-28 max-w-md mx-auto font-sans">
-      {/* Header sy Logo */}
-      <div className="flex justify-between items-center py-3 mb-4">
-        <h1 className="text-emerald-400 font-black text-lg tracking-wider">Ndao Hianatra</h1>
-        <div className="flex items-center space-x-2">
-          <div className="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full flex items-center space-x-1.5 shadow-md">
-            <span className="text-amber-400 text-sm">🔥</span>
-            <span className="text-xs font-black text-amber-400">2</span>
+    <div style={{ minHeight: '100vh', backgroundColor: '#020617', color: '#ffffff', padding: '16px', paddingBottom: '120px', maxWidth: '440px', margin: '0 auto', fontFamily: 'sans-serif' }}>
+      
+      {/* Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', marginBottom: '16px' }}>
+        <h1 style={{ color: '#4ade80', fontSize: '20px', fontWeight: '900', margin: 0, letterSpacing: '0.5px' }}>Ndao Hianatra</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '6px 12px', borderRadius: '9999px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>🔥</span>
+            <span style={{ fontSize: '12px', fontWeight: '900', color: '#f59e0b' }}>2</span>
           </div>
           <button 
             onClick={() => setShowSettings(!showSettings)}
-            className="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-2xl transition-all shadow-md text-sm"
+            style={{ padding: '8px 12px', backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '16px', cursor: 'pointer', fontSize: '14px' }}
           >
             ⚙️
           </button>
         </div>
       </div>
 
-      {/* Navigation Onglets (PROFIL / DISCUSSION) */}
-      <div className="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-3xl border border-slate-800 mb-6 shadow-inner">
+      {/* Tabs */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', backgroundColor: '#0f172a', padding: '6px', borderRadius: '24px', border: '1px solid #1e293b', marginBottom: '24px' }}>
         <button
           onClick={() => setActiveTab('profil')}
-          className={`py-2.5 rounded-2xl font-black text-xs transition-all shadow-md ${
-            activeTab === 'profil' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'
-          }`}
+          style={{
+            padding: '12px',
+            borderRadius: '18px',
+            fontWeight: '900',
+            fontSize: '12px',
+            border: 'none',
+            cursor: 'pointer',
+            backgroundColor: activeTab === 'profil' ? '#06b6d4' : 'transparent',
+            color: activeTab === 'profil' ? '#020617' : '#94a3b8',
+            transition: 'all 0.2s'
+          }}
         >
           👤 PROFIL
         </button>
         <button
           onClick={() => setActiveTab('discussion')}
-          className={`py-2.5 rounded-2xl font-black text-xs transition-all shadow-md ${
-            activeTab === 'discussion' ? 'bg-emerald-500 text-slate-950' : 'text-slate-400 hover:text-white'
-          }`}
+          style={{
+            padding: '12px',
+            borderRadius: '18px',
+            fontWeight: '900',
+            fontSize: '12px',
+            border: 'none',
+            cursor: 'pointer',
+            backgroundColor: activeTab === 'discussion' ? '#10b981' : 'transparent',
+            color: activeTab === 'discussion' ? '#020617' : '#94a3b8',
+            transition: 'all 0.2s'
+          }}
         >
           💬 DISCUSSION
         </button>
       </div>
 
-      {/* Menu Paramètres Fiteny */}
+      {/* Settings Panel */}
       {showSettings && (
-        <div className="bg-slate-900 border border-cyan-500/30 p-4 rounded-3xl mb-6 shadow-2xl space-y-3">
-          <h3 className="font-extrabold text-xs uppercase tracking-wider text-cyan-400">🌍 Firin'ny Fiteny (Langue)</h3>
-          <div className="grid grid-cols-3 gap-2">
+        <div style={{ backgroundColor: '#0f172a', border: '1px solid rgba(6, 182, 212, 0.4)', padding: '16px', borderRadius: '24px', marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '11px', fontWeight: '800', textTransform: 'uppercase', color: '#22d3ee', margin: '0 0 12px 0' }}>🌍 Firin'ny Fiteny (Langue)</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
             <button
               onClick={() => setLanguage('MG')}
-              className={`p-2 rounded-2xl text-xs font-extrabold border-2 ${
-                language === 'MG' ? 'border-emerald-500 bg-emerald-500/20 text-emerald-300' : 'border-slate-800 bg-slate-800 text-slate-400'
-              }`}
+              style={{ padding: '10px', borderRadius: '16px', fontSize: '11px', fontWeight: '800', border: language === 'MG' ? '2px solid #10b981' : '2px solid #1e293b', backgroundColor: language === 'MG' ? 'rgba(16, 185, 129, 0.2)' : '#1e293b', color: language === 'MG' ? '#34d399' : '#94a3b8', cursor: 'pointer' }}
             >
               🇲🇬 Malagasy
             </button>
             <button
               onClick={() => setLanguage('FR')}
-              className={`p-2 rounded-2xl text-xs font-extrabold border-2 ${
-                language === 'FR' ? 'border-blue-500 bg-blue-500/20 text-blue-300' : 'border-slate-800 bg-slate-800 text-slate-400'
-              }`}
+              style={{ padding: '10px', borderRadius: '16px', fontSize: '11px', fontWeight: '800', border: language === 'FR' ? '2px solid #3b82f6' : '2px solid #1e293b', backgroundColor: language === 'FR' ? 'rgba(59, 130, 246, 0.2)' : '#1e293b', color: language === 'FR' ? '#60a5fa' : '#94a3b8', cursor: 'pointer' }}
             >
               🇫🇷 Français
             </button>
             <button
               onClick={() => setLanguage('EN')}
-              className={`p-2 rounded-2xl text-xs font-extrabold border-2 ${
-                language === 'EN' ? 'border-red-500 bg-red-500/20 text-red-300' : 'border-slate-800 bg-slate-800 text-slate-400'
-              }`}
+              style={{ padding: '10px', borderRadius: '16px', fontSize: '11px', fontWeight: '800', border: language === 'EN' ? '2px solid #ef4444' : '2px solid #1e293b', backgroundColor: language === 'EN' ? 'rgba(239, 68, 68, 0.2)' : '#1e293b', color: language === 'EN' ? '#f87171' : '#94a3b8', cursor: 'pointer' }}
             >
               🇺🇸 English
             </button>
@@ -96,82 +107,83 @@ export default function ProfilePage() {
 
       {/* TAB 1: PROFIL */}
       {activeTab === 'profil' && (
-        <div className="space-y-6">
-          {/* Avatar / Photo de profil afovoany */}
-          <div className="flex flex-col items-center space-y-3 pt-2">
-            <div className="relative">
-              <div className="w-28 h-28 rounded-full border-4 border-emerald-500 bg-emerald-950/40 flex items-center justify-center shadow-2xl">
-                <span className="text-4xl">😊</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          
+          {/* Avatar Center */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '12px', paddingTop: '8px' }}>
+            <div style={{ position: 'relative' }}>
+              <div style={{ width: '110px', height: '110px', borderRadius: '50%', border: '4px solid #10b981', backgroundColor: 'rgba(6, 78, 59, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 25px -5px rgba(0,0,0,0.3)' }}>
+                <span style={{ fontSize: '42px' }}>😊</span>
               </div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 bg-emerald-500 border-2 border-slate-950 rounded-full flex items-center justify-center text-slate-950 font-black text-sm shadow-md">
+              <div style={{ position: 'absolute', bottom: '0', right: '0', width: '32px', height: '32px', backgroundColor: '#10b981', border: '3px solid #020617', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#020617', fontWeight: '900', fontSize: '16px' }}>
                 +
               </div>
             </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center space-x-2">
-                <h2 className="text-xl font-black text-white">Nandrian By Boy</h2>
-                <span className="bg-purple-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase">PRO</span>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                <h2 style={{ fontSize: '20px', fontWeight: '900', color: '#ffffff', margin: 0 }}>Nandrian By Boy</h2>
+                <span style={{ backgroundColor: '#9333ea', color: '#ffffff', fontSize: '9px', fontWeight: '900', padding: '2px 8px', borderRadius: '9999px', textTransform: 'uppercase' }}>PRO</span>
               </div>
-              <p className="text-xs text-slate-400 font-bold mt-1">@nandrian • Depuis 2026</p>
+              <p style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '700', margin: '4px 0 0 0' }}>@nandrian • Depuis 2026</p>
             </div>
           </div>
 
-          {/* Stats Box (Cours & Abonnés) */}
-          <div className="grid grid-cols-3 gap-2 bg-slate-900 border border-slate-800 p-3 rounded-3xl shadow-xl text-center">
-            <div className="border-r border-slate-800">
-              <div className="flex justify-center space-x-1 mb-1">
-                <span className="text-base">🇲🇬</span>
-                <span className="text-base">🇺🇸</span>
+          {/* Stats Box */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '16px 12px', borderRadius: '24px', textAlign: 'center' }}>
+            <div style={{ borderRight: '1px solid #1e293b', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '4px' }}>
+                <span style={{ fontSize: '14px' }}>🇲🇬</span>
+                <span style={{ fontSize: '14px' }}>🇺🇸</span>
               </div>
-              <p className="text-[10px] text-slate-400 uppercase font-bold">Cours (4)</p>
+              <span style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Cours (4)</span>
             </div>
-            <div className="border-r border-slate-800 flex flex-col justify-center">
-              <p className="font-black text-base text-cyan-400">12</p>
-              <p className="text-[10px] text-slate-400 uppercase font-bold">Abonnements</p>
+            <div style={{ borderRight: '1px solid #1e293b', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <span style={{ fontSize: '16px', fontWeight: '900', color: '#22d3ee' }}>12</span>
+              <span style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Abonnements</span>
             </div>
-            <div className="flex flex-col justify-center">
-              <p className="font-black text-base text-emerald-400">8</p>
-              <p className="text-[10px] text-slate-400 uppercase font-bold">Abonnés</p>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <span style={{ fontSize: '16px', fontWeight: '900', color: '#34d399' }}>8</span>
+              <span style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Abonnés</span>
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="grid grid-cols-2 gap-3">
-            <button className="py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs rounded-2xl shadow-lg transition-all">
+          {/* Buttons */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <button style={{ padding: '14px', backgroundColor: '#06b6d4', color: '#020617', fontWeight: '900', fontSize: '11px', borderRadius: '18px', border: 'none', cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.2)' }}>
               👥 AMPIDIRO NAMANA
             </button>
-            <button className="py-3 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-2xl shadow-lg transition-all">
+            <button style={{ padding: '14px', backgroundColor: '#9333ea', color: '#ffffff', fontWeight: '900', fontSize: '11px', borderRadius: '18px', border: 'none', cursor: 'pointer', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.2)' }}>
               💬 HANGOBAKA
             </button>
           </div>
 
-          {/* Récapitulatif sy Statistiques */}
-          <div className="space-y-3">
-            <h3 className="font-extrabold text-slate-400 tracking-wider text-xs uppercase px-1">RÉCAPITULATIF</h3>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="p-4 bg-slate-900 border border-slate-800 rounded-3xl flex items-center space-x-3 shadow-lg">
-                <span className="text-2xl">🔥</span>
+          {/* Recapitulatif */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <h3 style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', margin: 0, paddingLeft: '4px' }}>RÉCAPITULATIF</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '16px', borderRadius: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontSize: '24px' }}>🔥</span>
                 <div>
-                  <p className="font-black text-base text-white">2 jours</p>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase">Série actuelle</p>
+                  <div style={{ fontSize: '15px', fontWeight: '900', color: '#ffffff' }}>2 jours</div>
+                  <div style={{ fontSize: '9px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Série actuelle</div>
                 </div>
               </div>
-              <div className="p-4 bg-slate-900 border border-slate-800 rounded-3xl flex items-center space-x-3 shadow-lg">
-                <span className="text-2xl">⚡</span>
+              <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '16px', borderRadius: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontSize: '24px' }}>⚡</span>
                 <div>
-                  <p className="font-black text-base text-white">261 XP</p>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase">Total XP</p>
+                  <div style={{ fontSize: '15px', fontWeight: '900', color: '#ffffff' }}>261 XP</div>
+                  <div style={{ fontSize: '9px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Total XP</div>
                 </div>
               </div>
-              <div className="p-4 bg-slate-900 border border-slate-800 rounded-3xl flex items-center space-x-3 col-span-2 shadow-lg justify-between">
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">🏆</span>
+              <div style={{ gridColumn: 'span 2', backgroundColor: '#0f172a', border: '1px solid #1e293b', padding: '16px', borderRadius: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '24px' }}>🏆</span>
                   <div>
-                    <p className="font-black text-base text-white">Ligue Bronze</p>
-                    <p className="text-[10px] text-slate-400 font-bold uppercase">Rang #4 • Herinandro</p>
+                    <div style={{ fontSize: '15px', fontWeight: '900', color: '#ffffff' }}>Ligue Bronze</div>
+                    <div style={{ fontSize: '9px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase' }}>Rang #4 • Herinandro</div>
                   </div>
                 </div>
-                <span className="bg-amber-500/20 border border-amber-500/40 text-amber-400 font-black text-xs px-3 py-1 rounded-xl">
+                <span style={{ backgroundColor: 'rgba(245, 158, 11, 0.2)', border: '1px solid rgba(245, 158, 11, 0.4)', color: '#f59e0b', fontWeight: '900', fontSize: '11px', padding: '6px 12px', borderRadius: '12px' }}>
                   TOP 5
                 </span>
               </div>
@@ -182,33 +194,33 @@ export default function ProfilePage() {
 
       {/* TAB 2: DISCUSSION */}
       {activeTab === 'discussion' && (
-        <div className="space-y-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-4 h-[350px] overflow-y-auto space-y-3 flex flex-col shadow-inner">
-            <h3 className="text-xs font-black uppercase text-emerald-400 tracking-wider pb-2 border-b border-slate-800">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '24px', padding: '16px', height: '350px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <h3 style={{ fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', color: '#34d399', margin: '0 0 8px 0', paddingBottom: '8px', borderBottom: '1px solid #1e293b' }}>
               💬 Fizarana Resaka sy Hevitra
             </h3>
             {messages.map((msg) => (
-              <div key={msg.id} className="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/50 space-y-1 shadow-md">
-                <div className="flex justify-between items-center">
-                  <span className="font-black text-xs text-emerald-400">{msg.user}</span>
-                  <span className="text-[10px] text-slate-500">{msg.time}</span>
+              <div key={msg.id} style={{ backgroundColor: '#1e293b', padding: '12px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontWeight: '900', fontSize: '11px', color: '#34d399' }}>{msg.user}</span>
+                  <span style={{ fontSize: '9px', color: '#64748b' }}>{msg.time}</span>
                 </div>
-                <p className="text-sm text-slate-200">{msg.text}</p>
+                <p style={{ fontSize: '13px', color: '#e2e8f0', margin: 0 }}>{msg.text}</p>
               </div>
             ))}
           </div>
 
-          <form onSubmit={handleSendMessage} className="flex gap-2">
+          <form onSubmit={handleSendMessage} style={{ display: 'flex', gap: '8px' }}>
             <input
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Soraty eto ny hevitrao..."
-              className="flex-1 bg-slate-900 border-2 border-slate-800 focus:border-emerald-500 rounded-2xl px-4 py-3 text-sm text-white outline-none shadow-inner"
+              style={{ flex: 1, backgroundColor: '#0f172a', border: '2px solid #1e293b', borderRadius: '16px', padding: '12px 16px', fontSize: '13px', color: '#ffffff', outline: 'none' }}
             />
             <button
               type="submit"
-              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-5 rounded-2xl shadow-lg transition-all"
+              style={{ backgroundColor: '#10b981', color: '#020617', fontWeight: '900', padding: '0 18px', borderRadius: '16px', border: 'none', cursor: 'pointer', fontSize: '16px' }}
             >
               📤
             </button>
@@ -217,4 +229,4 @@ export default function ProfilePage() {
       )}
     </div>
   );
-    }
+}
