@@ -1,9 +1,107 @@
 'use client';
-import {FormEvent,useEffect,useState} from 'react';
-import {useRouter} from 'next/navigation';
-import {supabaseBrowser} from '../../lib/supabase/client';
-type Lesson={id:number;title:string;language:string;level:string;description:string;content:string};
-type Payment={id:string;plan:string;amount_ariary:number;method:string;transaction_reference:string;status:string;created_at:string};
-const plans=[{name:'1 herinandro',amount:1000},{name:'1 volana',amount:10000},{name:'1 taona',amount:50000}];
-export default function Dashboard(){const [email,setEmail]=useState('');const [lessons,setLessons]=useState<Lesson[]>([]);const [payments,setPayments]=useState<Payment[]>([]);const [plan,setPlan]=useState(plans[0].name);const [method,setMethod]=useState('Orange Money');const [reference,setReference]=useState('');const [message,setMessage]=useState('');const [aiQuestion,setAiQuestion]=useState('');const [aiAnswer,setAiAnswer]=useState('');const [busy,setBusy]=useState(false);const router=useRouter();useEffect(()=>{(async()=>{try{const sb=supabaseBrowser();const {data:{user}}=await sb.auth.getUser();if(!user){router.push('/login');return}setEmail(user.email||'');const l=await sb.from('lessons').select('*').order('id');if(l.data)setLessons(l.data as Lesson[]);const p=await sb.from('payments').select('*').order('created_at',{ascending:false});if(p.data)setPayments(p.data as Payment[]);}catch(e){setMessage(e instanceof Error?e.message:'Tsy afaka nampiditra angona.');}})()},[router]);async function submitPayment(e:FormEvent){e.preventDefault();setBusy(true);setMessage('');try{const sb=supabaseBrowser();const {data:{user}}=await sb.auth.getUser();if(!user)throw new Error('Midira aloha.');const chosen=plans.find(p=>p.name===plan);if(!chosen)throw new Error('Safidy tsy mety.');const {error}=await sb.from('payments').insert({user_id:user.id,plan,amount_ariary:chosen.amount,method,transaction_reference:reference.trim(),status:'pending'});if(error)throw error;setMessage('Voaray ny fangatahana. Mbola miandry fanamarinana ny fandoavam-bola.');setReference('');const p=await sb.from('payments').select('*').order('created_at',{ascending:false});if(p.data)setPayments(p.data as Payment[]);}catch(e){setMessage(e instanceof Error?e.message:'Tsy tafapetraka ny fangatahana.');}finally{setBusy(false)}}async function askAI(e:FormEvent){e.preventDefault();setAiAnswer('');try{const res=await fetch('/api/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:aiQuestion})});const data=await res.json();if(!res.ok)throw new Error(data.error||'Tsy afaka mamaly ny bot izao.');setAiAnswer(data.answer); }catch(e){setAiAnswer(e instanceof Error?e.message:'Nisy olana tamin’ny bot AI.');}}async function logout(){const sb=supabaseBrowser();await sb.auth.signOut();router.push('/')}const orange=process.env.NEXT_PUBLIC_ORANGE_MONEY_NUMBER||'LAHARANA ORANGE MONEY MBOLA APETRAKA';const mvola=process.env.NEXT_PUBLIC_MVOLA_NUMBER||'LAHARANA MVOLA MBOLA APETRAKA';return <main className="wrap"><header className="nav"><a className="brand" href="/">🌍 Ndao Hianatra Langue</a><div className="navlinks"><span className="small">{email}</span><button className="btn secondary" onClick={logout}>Hivoaka</button></div></header><section className="section"><h1>Ny sehatra fianaranao</h1><p className="muted">Safidio ny lesona, manaova fanazaran-tena ary anontanio ny bot AI.</p><div className="grid two"><article className="card"><h2>📚 Lesona</h2>{lessons.length?lessons.map(l=><div key={l.id} className="lesson"><span className="pill">{l.language} • {l.level}</span><h3>{l.title}</h3><p>{l.description}</p><details><summary>Hanokatra lesona</summary><p style={{whiteSpace:'pre-wrap'}}>{l.content}</p></details><hr style={{border:0,borderTop:'1px solid #e1e9e2',margin:'16px 0'}}/></div>):<p className="muted">Mbola tsy misy lesona ao amin’ny base de données. Alefaso ny SQL voarakitra ao amin’ny README.</p>}</article><article className="card"><h2>🤖 Bot AI mpanampy</h2><p className="muted">Anontanio amin’ny teny tsotra ny dikan’ny teny iray, na mangataha fanazavana momba ny fitsipi-pitenenana.</p><form onSubmit={askAI}><label>Fanontanianao</label><textarea required rows={3} value={aiQuestion} onChange={e=>setAiQuestion(e.target.value)} placeholder="Ohatra: Ahoana ny fampiasana 'I am' amin’ny anglisy?"/><button className="btn">Hanontany ny bot</button></form>{aiAnswer&&<div className="success" style={{marginTop:14,whiteSpace:'pre-wrap'}}>{aiAnswer}</div>}<p className="small muted">Mila OPENAI_API_KEY voapetraka amin’ny serveur ny bot AI.</p></article></div></section><section className="section"><div className="grid two"><article className="card"><h2>💳 Fangatahana Premium</h2><div className="notice"><strong>Orange Money:</strong> {orange}<br/><strong>MVola:</strong> {mvola}<br/><span className="small">Alefaso amin’ny laharana ofisialy ihany ny vola. Soloy amin’ny laharanao marina ireo placeholder alohan’ny hamoahana ny tranonkala.</span></div><form onSubmit={submitPayment} style={{marginTop:18}}><label>Abonnement</label><select value={plan} onChange={e=>setPlan(e.target.value)}>{plans.map(p=><option key={p.name} value={p.name}>{p.name} — {p.amount.toLocaleString('fr-FR')} Ar</option>)}</select><label>Fomba fandoavana</label><select value={method} onChange={e=>setMethod(e.target.value)}><option>Orange Money</option><option>MVola</option></select><label>Laharan’ny transaction</label><input required value={reference} onChange={e=>setReference(e.target.value)} placeholder="Ampidiro ny référence transaction"/><button className="btn" disabled={busy}>{busy?'Alefa...':'Handefa fangatahana'}</button></form>{message&&<p className="muted">{message}</p>}<p className="small muted">Tsy mandeha automatique ny paiement. Ny administrateur no manamarina ny référence ary manome Premium rehefa voamarina.</p></article><article className="card"><h2>📋 Ny fangatahanao</h2>{payments.length?payments.map(p=><div key={p.id} style={{padding:'12px 0',borderBottom:'1px solid #e1e9e2'}}><strong>{p.plan} — {p.amount_ariary.toLocaleString('fr-FR')} Ar</strong><p className="small muted">{p.method} • {p.transaction_reference}</p><span className={'status '+p.status}>{p.status==='pending'?'Miandry':p.status==='approved'?'Voamarina':'Nolavina'}</span></div>):<p className="muted">Tsy mbola nisy fangatahana.</p>}</article></div></section><footer className="footer">Ndao Hianatra Langue • Aza mizara PIN na kaody miafina amin’olona.</footer></main>}
-  
+import { FormEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabaseBrowser } from '../../lib/supabase/client';
+
+export default function Dashboard() {
+  const [selectedMethod, setSelectedMethod] = useState('mvola');
+  const [selectedPlan, setSelectedPlan] = useState('1 volana');
+  const [amount, setAmount] = useState('10 000 Ar');
+  const [reference, setReference] = useState('');
+  const [message, setMessage] = useState('');
+  const router = useRouter();
+
+  const handlePaymentSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    // Afaka ampiana eto ny fomba fandefasana any amin'ny Supabase
+    setMessage(' Tafita soa aman-tsara ny fangatahanao! Miandry ny fanamarinan\'ny admin.');
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white p-6">
+      <div className="max-w-xl mx-auto space-y-6">
+        <h1 className="text-2xl font-bold">Fandaharana sy Fandoavam-bola (Premium)</h1>
+
+        {/* Safidy Fomba Fandoavana */}
+        <div className="bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-800">
+          <h2 className="text-xl font-bold mb-4">Safidio ny fomba fandoavana</h2>
+          
+          <div className="grid grid-cols-3 gap-3 mb-6">
+            {/* MVola */}
+            <button
+              type="button"
+              onClick={() => setSelectedMethod('mvola')}
+              className={`p-3 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
+                selectedMethod === 'mvola' ? 'border-green-500 bg-green-950/30' : 'border-slate-700 bg-slate-800'
+              }`}
+            >
+              <span className="font-bold text-green-400">MVola</span>
+            </button>
+
+            {/* Orange Money */}
+            <button
+              type="button"
+              onClick={() => setSelectedMethod('orange')}
+              className={`p-3 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
+                selectedMethod === 'orange' ? 'border-orange-500 bg-orange-950/30' : 'border-slate-700 bg-slate-800'
+              }`}
+            >
+              <span className="font-bold text-orange-400">Orange</span>
+            </button>
+
+            {/* Airtel Money (Indisponible) */}
+            <button
+              type="button"
+              disabled
+              className="p-3 rounded-xl border-2 border-slate-800 bg-slate-900/50 opacity-50 cursor-not-allowed flex flex-col items-center justify-center"
+            >
+              <span className="font-bold text-slate-500">Airtel</span>
+              <span className="text-[10px] text-red-400">Tsy misy</span>
+            </button>
+          </div>
+
+          {/* Fampisehoana ny Laharana arakaraka ny safidy */}
+          <div className="p-4 bg-slate-800 rounded-xl mb-6 border border-slate-700">
+            {selectedMethod === 'mvola' && (
+              <div>
+                <p className="text-sm text-slate-400">Alefaso amin'ny MVola:</p>
+                <p className="text-lg font-bold text-green-400">038 29 699 74</p>
+                <p className="text-xs text-slate-300 mt-1">Anarana: ANDRO FARA NIEZAKA</p>
+              </div>
+            )}
+            {selectedMethod === 'orange' && (
+              <div>
+                <p className="text-sm text-slate-400">Alefaso amin'ny Orange Money:</p>
+                <p className="text-lg font-bold text-orange-400">037 25 149 00</p>
+                <p className="text-xs text-slate-300 mt-1">Anarana: ANDRO FARA NIEZAKA</p>
+              </div>
+            )}
+          </div>
+
+          <form onSubmit={handlePaymentSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm text-slate-300 mb-2">Laharana'ny transaction (Référence)</label>
+              <input
+                type="text"
+                value={reference}
+                onChange={(e) => setReference(e.target.value)}
+                placeholder="Ohatra: MP261030..."
+                required
+                className="w-full p-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-green-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-green-600 hover:bg-green-500 font-bold rounded-xl transition-all"
+            >
+              Handefa fangatahana
+            </button>
+          </form>
+
+          {message && <p className="mt-4 text-sm text-green-400 text-center">{message}</p>}
+        </div>
+      </div>
+    </div>
+  );
+        }
