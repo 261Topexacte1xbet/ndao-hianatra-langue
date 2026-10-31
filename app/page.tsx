@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-export default function HomePage() {
+export default function Home() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#070b15', color: 'white', padding: '1rem', textAlign: 'center' }}>
       <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🌍</div>
@@ -10,7 +10,7 @@ export default function HomePage() {
         Ndao Hianatra Langue
       </h1>
       <p style={{ color: '#94a3b8', marginBottom: '2rem', maxWidth: '400px' }}>
-        Tsé tsara ny manomboka mianatra fiteny vaovao androany. Midira na mamorona kaonty mba hanombohana.
+        Tsy manam-paharoa ny manomboka mianatra fiteny vaovao androany. Midira na mamorona kaonty mba hanombohana.
       </p>
 
       <div style={{ display: 'flex', gap: '1rem' }}>
