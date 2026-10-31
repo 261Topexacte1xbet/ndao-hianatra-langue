@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
+import { Eye, EyeOff } from 'lucide-react'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -11,6 +12,7 @@ const supabase = createClient(
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -19,7 +21,10 @@ export default function LoginPage() {
     setLoading(true)
     setMessage('')
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
 
     if (error) {
       setMessage('Diso ny email na teny miafina.')
@@ -30,36 +35,67 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ backgroundColor: '#07090e', color: '#fff', minHeight: '100vh', padding: '24px 16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', fontFamily: 'sans-serif', boxSizing: 'border-box' }}>
-      <div style={{ maxWidth: '400px', width: '100%', backgroundColor: '#0f172a', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '22px', padding: '24px', boxShadow: '0 15px 30px rgba(0,0,0,0.5)' }}>
-        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <div style={{ fontSize: '36px', marginBottom: '8px' }}>🔐</div>
-          <h2 style={{ fontSize: '22px', fontWeight: '900', color: '#f59e0b', margin: 0 }}>Se connecter</h2>
-          <p style={{ fontSize: '12px', color: '#94a3b8', margin: '6px 0 0 0' }}>Midira ao amin'ny kaontinao.</p>
-        </div>
+    <div className="flex min-h-screen items-center justify-center bg-[#070b15] px-4">
+      <div className="w-full max-w-md rounded-2xl bg-[#0f172a] p-8 shadow-xl border border-gray-800 text-white text-center">
+        <div className="mb-4 text-4xl">🔐</div>
+        <h1 className="text-2xl font-bold text-amber-500 mb-1">Se connecter</h1>
+        <p className="text-sm text-gray-400 mb-6">Midira ao amin'ny kaontinao.</p>
 
         {message && (
-          <div style={{ padding: '10px', backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', borderRadius: '10px', fontSize: '12px', color: '#fca5a5', marginBottom: '14px', textAlign: 'center' }}>
+          <div className="mb-4 rounded bg-red-500/10 p-3 text-sm text-red-500 border border-red-500/20">
             {message}
           </div>
         )}
 
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4 text-left">
           <div>
-            <label style={{ fontSize: '11px', color: '#cbd5e1', display: 'block', marginBottom: '6px', fontWeight: '600' }}>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="anarana@example.com" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px', color: '#fff', fontSize: '13px', outline: 'none', boxSizing: 'border-box' }} />
+            <label className="mb-2 block text-xs text-gray-300 font-medium">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="anarana@example.com"
+              required
+              className="w-full rounded-lg bg-[#070b15] px-4 py-3 text-white border border-gray-800 focus:border-amber-500 focus:outline-none"
+            />
           </div>
+
           <div>
-            <label style={{ fontSize: '11px', color: '#cbd5e1', display: 'block', marginBottom: '6px', fontWeight: '600' }}>Teny Miafina</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="••••••••" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '12px', color: '#fff', fontSize: '13px', outline: 'none', boxSizing: 'border-box' }} />
+            <label className="mb-2 block text-xs text-gray-300 font-medium">Teny Miafina</label>
+            <div className="relative flex items-center">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                className="w-full rounded-lg bg-[#070b15] px-4 py-3 pr-10 text-white border border-gray-800 focus:border-amber-500 focus:outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 text-gray-400 hover:text-white focus:outline-none"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: '14px', background: 'linear-gradient(135deg, #f59e0b, #ea580c)', color: '#07090e', fontWeight: '900', borderRadius: '12px', border: 'none', cursor: 'pointer', fontSize: '14px', marginTop: '6px' }}>
-            {loading ? 'Midirana...' : 'Midira →'}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-2 w-full rounded-lg bg-amber-500 py-3 font-bold text-black transition hover:bg-amber-400 disabled:opacity-50"
+          >
+            {loading ? 'Mampiditra...' : 'Midira →'}
           </button>
         </form>
-        <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '12px', color: '#94a3b8' }}>
-          Tsy manana kaonty? <a href="/register" style={{ color: '#f59e0b', fontWeight: 'bold', textDecoration: 'none' }}>S'inscrire</a>
-        </div>
+
+        <p className="mt-6 text-sm text-gray-400">
+          Tsy manana kaonty?{' '}
+          <a href="/register" className="text-amber-500 hover:underline">
+            S'inscrire
+          </a>
+        </p>
       </div>
     </div>
   )
