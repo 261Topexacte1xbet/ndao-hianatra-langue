@@ -84,4 +84,108 @@ export default function Home() {
           <div className="grid grid-cols-2 bg-[#0a0d14] p-1 rounded-xl mb-6 border border-gray-800/80">
             <button
               onClick={() => setActiveTab("login")}
-              className={`py-2
+              className={`py-2 text-xs font-semibold rounded-lg transition-all ${
+                activeTab === "login"
+                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/30 shadow"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Connexion
+            </button>
+            <button
+              onClick={() => setActiveTab("register")}
+              className={`py-2 text-xs font-semibold rounded-lg transition-all ${
+                activeTab === "register"
+                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/30 shadow"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              S'inscrire
+            </button>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4 text-left">
+            <div>
+              <label className="block text-[11px] text-gray-400 mb-1 font-medium">
+                Adresse e-mail
+              </label>
+              <div className="relative">
+                <svg className="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <input
+                  type="email"
+                  required
+                  placeholder="votre.email@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-[#0a0d14] border border-gray-800 rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-amber-500 transition-all"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="block text-[11px] text-gray-400 font-medium">
+                  Mot de passe
+                </label>
+                {activeTab === "login" && (
+                  <button
+                    type="button"
+                    className="text-[10px] text-amber-400 hover:underline"
+                  >
+                    Oublié ?
+                  </button>
+                )}
+              </div>
+              <div className="relative">
+                <svg className="w-4 h-4 text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 11V7a5 5 0 0110 0v4" />
+                </svg>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-[#0a0d14] border border-gray-800 rounded-xl pl-9 pr-10 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-amber-500 transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(245,158,11,0.3)]"
+            >
+              {activeTab === "login" ? "Se connecter →" : "Créer un compte →"}
+            </button>
+          </form>
+
+          <p className="text-[10px] text-gray-500 text-center mt-4">
+            En continuant, vous acceptez nos{" "}
+            <span className="text-gray-400 underline cursor-pointer">
+              Conditions d'utilisation
+            </span>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full text-center py-2 z-10 text-[11px] text-gray-500">
+        © 2026 Ndao Hianatra Langue. Tous droits réservés.
+      </footer>
+    </main>
+  );
+      }
