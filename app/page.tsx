@@ -1,118 +1,330 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#08090d] text-white overflow-hidden">
+    <main className="home">
 
-      {/* HEADER */}
-      <header className="flex items-center justify-between px-6 py-6 max-w-6xl mx-auto">
-        <div className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center text-3xl shadow-lg shadow-yellow-500/20">
-            🌍
-          </div>
+      <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
 
+        body {
+          margin: 0;
+          background: #08090d;
+          font-family: Arial, sans-serif;
+        }
+
+        .home {
+          min-height: 100vh;
+          background:
+            radial-gradient(circle at 50% 35%, #29200e 0%, #0b0c11 38%, #08090d 75%);
+          color: white;
+          overflow: hidden;
+          padding-bottom: 35px;
+        }
+
+        .header {
+          max-width: 850px;
+          margin: auto;
+          padding: 25px 22px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .logo {
+          width: 52px;
+          height: 52px;
+          border-radius: 15px;
+          background: linear-gradient(135deg, #ffc400, #e87900);
+          display: grid;
+          place-items: center;
+          font-size: 27px;
+          box-shadow: 0 0 25px #ffae0040;
+        }
+
+        .brand h1 {
+          font-size: 19px;
+          margin: 0;
+        }
+
+        .brand h1 span {
+          color: #ffbf35;
+        }
+
+        .brand p {
+          font-size: 9px;
+          color: #92929a;
+          letter-spacing: 1.5px;
+          margin-top: 5px;
+        }
+
+        .admin {
+          border: 1px solid #a87932;
+          color: #f4c66d;
+          border-radius: 30px;
+          padding: 9px 15px;
+          font-size: 12px;
+        }
+
+        .hero {
+          max-width: 650px;
+          margin: auto;
+          padding: 55px 22px 25px;
+          text-align: center;
+        }
+
+        .globe-area {
+          position: relative;
+          width: 240px;
+          height: 245px;
+          margin: 0 auto 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .glow {
+          position: absolute;
+          width: 220px;
+          height: 220px;
+          background: #f5a900;
+          filter: blur(85px);
+          opacity: 0.18;
+          border-radius: 50%;
+        }
+
+        .globe {
+          position: relative;
+          font-size: 135px;
+          filter: sepia(1) saturate(2.5) hue-rotate(350deg)
+            drop-shadow(0 0 20px #ffc13b);
+          z-index: 2;
+        }
+
+        .platform {
+          position: absolute;
+          bottom: 17px;
+          width: 185px;
+          height: 27px;
+          border: 2px solid #e9b94c;
+          transform: perspective(100px) rotateX(35deg);
+          background: linear-gradient(90deg, #49320b, #d49a24, #49320b);
+          box-shadow: 0 0 25px #e9ae3670;
+        }
+
+        .badges {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin: 20px 0 30px;
+        }
+
+        .badge {
+          background: #171c2c;
+          border: 1px solid #353548;
+          padding: 10px 16px;
+          border-radius: 30px;
+          font-size: 13px;
+          color: #e8bd62;
+        }
+
+        .badge.gray {
+          color: #ddd;
+        }
+
+        .title {
+          font-size: clamp(34px, 8vw, 48px);
+          font-weight: 900;
+          line-height: 1.2;
+          margin: 20px 0;
+        }
+
+        .title span {
+          color: #ffb52e;
+          background: linear-gradient(90deg, #ffe18a, #ff9e16);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+          max-width: 530px;
+          margin: 0 auto 38px;
+          color: #a5a5b2;
+          font-size: 17px;
+          line-height: 1.7;
+        }
+
+        .buttons {
+          max-width: 450px;
+          margin: auto;
+          display: grid;
+          gap: 14px;
+        }
+
+        .btn {
+          display: block;
+          width: 100%;
+          padding: 19px;
+          border-radius: 40px;
+          text-decoration: none;
+          font-size: 17px;
+          font-weight: bold;
+          transition: 0.3s;
+        }
+
+        .login {
+          color: #17100a;
+          background: linear-gradient(100deg, #e9a900, #ffbd45);
+          box-shadow: 0 0 30px #e5a32235;
+        }
+
+        .register {
+          color: white;
+          border: 1.5px solid #777783;
+          background: transparent;
+        }
+
+        .btn:hover {
+          transform: translateY(-3px);
+        }
+
+        .info {
+          max-width: 600px;
+          margin: 45px auto 0;
+          padding: 25px;
+          border-radius: 25px;
+          background: #111629;
+          border: 1px solid #514124;
+          text-align: left;
+          box-shadow: 0 10px 35px #0005;
+        }
+
+        .info h3 {
+          color: #ffbd45;
+          margin-top: 0;
+          font-size: 18px;
+        }
+
+        .info p {
+          color: #c0c0ca;
+          font-size: 14px;
+          line-height: 1.8;
+        }
+
+        footer {
+          text-align: center;
+          color: #686875;
+          font-size: 12px;
+          margin-top: 45px;
+        }
+
+        @media (max-width: 480px) {
+          .header {
+            padding: 18px 15px;
+          }
+
+          .brand h1 {
+            font-size: 16px;
+          }
+
+          .admin {
+            font-size: 10px;
+            padding: 7px 9px;
+          }
+
+          .hero {
+            padding-top: 35px;
+          }
+
+          .globe {
+            font-size: 115px;
+          }
+
+          .description {
+            font-size: 15px;
+          }
+
+          .info {
+            margin: 35px 15px 0;
+            padding: 20px;
+          }
+        }
+      `}</style>
+
+      <header className="header">
+        <div className="brand">
+          <div className="logo">🌍</div>
           <div>
-            <h1 className="text-xl font-extrabold">
-              Ndao Hianatra <span className="text-yellow-400">Langue</span>
-            </h1>
-            <p className="text-[10px] tracking-[2px] text-gray-400">
-              ÉCOSYSTÈME D'APPRENTISSAGE 2026
-            </p>
+            <h1>Ndao Hianatra <span>Langue</span></h1>
+            <p>ÉCOSYSTÈME D'APPRENTISSAGE 2026</p>
           </div>
         </div>
 
-        <span className="hidden sm:block text-yellow-400 border border-yellow-500/30 rounded-full px-4 py-2 text-sm">
-          👤 Admin
-        </span>
+        <div className="admin">👤 Admin</div>
       </header>
 
-      {/* HERO */}
-      <section className="max-w-3xl mx-auto px-6 pt-14 pb-20 text-center">
+      <section className="hero">
 
-        {/* GOLDEN GLOBE */}
-        <div className="relative flex justify-center mb-12">
-          <div className="absolute w-64 h-64 bg-yellow-500/10 blur-[90px] rounded-full"></div>
-
-          <div className="relative">
-            <div className="text-[120px] sm:text-[155px] drop-shadow-[0_0_30px_rgba(255,190,40,0.65)]">
-              🌍
-            </div>
-
-            <div className="w-48 sm:w-56 h-5 mx-auto rounded-full bg-gradient-to-r from-yellow-900 via-yellow-300 to-yellow-900 shadow-[0_0_35px_rgba(255,190,40,0.5)]"></div>
-          </div>
+        <div className="globe-area">
+          <div className="glow"></div>
+          <div className="globe">🌍</div>
+          <div className="platform"></div>
         </div>
 
-        {/* BADGES */}
-        <div className="flex justify-center flex-wrap gap-3 mb-8">
-          <span className="rounded-full bg-[#171c2d] border border-yellow-500/20 px-5 py-2 text-sm text-yellow-400 font-semibold">
-            🎓 Formation Multilingue
-          </span>
-
-          <span className="rounded-full bg-[#171c2d] border border-gray-600/40 px-5 py-2 text-sm text-gray-300">
-            🏆 Édition 2026
-          </span>
+        <div className="badges">
+          <div className="badge">🎓 Formation Multilingue</div>
+          <div className="badge gray">🏆 Édition 2026</div>
         </div>
 
-        {/* TITLE */}
-        <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-6">
-          Bienvenue sur
-          <br />
-          <span className="bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">
-            Ndao Hianatra
-          </span>
+        <h2 className="title">
+          Bienvenue sur<br />
+          <span>Ndao Hianatra</span>
         </h2>
 
-        {/* DESCRIPTION */}
-        <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-10">
+        <p className="description">
           Accédez à vos cours interactifs et perfectionnez
           votre niveau dès aujourd'hui.
         </p>
 
-        {/* BUTTONS */}
-        <div className="max-w-md mx-auto space-y-4">
-
-          <a
-            href="/login"
-            className="block w-full rounded-2xl py-5 text-lg font-extrabold text-black bg-gradient-to-r from-yellow-400 to-orange-500 shadow-[0_8px_30px_rgba(245,158,11,0.25)] hover:scale-[1.02] transition"
-          >
+        <div className="buttons">
+          <a href="/login" className="btn login">
             Se connecter →
           </a>
 
-          <a
-            href="/register"
-            className="block w-full rounded-2xl py-4 border border-gray-600 text-gray-200 font-semibold hover:border-yellow-400 hover:text-yellow-400 transition"
-          >
+          <a href="/register" className="btn register">
             S'inscrire
           </a>
-
         </div>
 
-        {/* INFORMATION CARD */}
-        <div className="mt-12 bg-[#111629] border border-yellow-500/20 rounded-3xl p-6 text-left shadow-xl">
+        <div className="info">
+          <h3>🎯 Ny Tanjon'ny Application</h3>
 
-          <h3 className="text-yellow-400 font-bold text-lg mb-4">
-            🎯 Ny Tanjon'ny Application
-          </h3>
-
-          <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+          <p>
             Natsangana ity sehatra ity mba hanampiana sy
             hitarahana ireo olona mbola sahirana na mbola tsy
             mahay mamolaka ny fiteny vahiny ary ny firesahana
             an-davan'andro.
           </p>
 
-          <p className="text-gray-400 mt-4 text-sm leading-relaxed">
+          <p>
             Fampianarana mora idirana, azo ampiharina ary
             hatrany mba hahafahanao miteny am-pahatokiana.
           </p>
-
         </div>
 
       </section>
 
-      {/* FOOTER */}
-      <footer className="text-center text-gray-600 text-xs pb-8">
+      <footer>
         © 2026 Ndao Hianatra Langue. Tous droits réservés.
       </footer>
 
     </main>
   );
-        }
+}
