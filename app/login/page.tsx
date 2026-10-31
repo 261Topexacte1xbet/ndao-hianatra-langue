@@ -3,6 +3,11 @@
 import React, { useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
+const supabase = createClient(
+  'https://qkdpts.supabase.co',
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+)
+
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -14,10 +19,6 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setMessage('')
-
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qkdpts.supabase.co'
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -101,4 +102,4 @@ export default function LoginPage() {
       </div>
     </div>
   )
-              }
+                       }
