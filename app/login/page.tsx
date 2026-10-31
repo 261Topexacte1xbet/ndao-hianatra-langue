@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
-import { Eye, EyeOff } from 'lucide-react'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL || '',
@@ -69,14 +68,14 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full rounded-lg bg-[#070b15] px-4 py-3 pr-10 text-white border border-gray-800 focus:border-amber-500 focus:outline-none"
+                className="w-full rounded-lg bg-[#070b15] px-4 py-3 pr-20 text-white border border-gray-800 focus:border-amber-500 focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 text-gray-400 hover:text-white focus:outline-none"
+                className="absolute right-3 text-xs text-amber-500 font-medium hover:underline focus:outline-none"
               >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                {showPassword ? 'Afino' : 'Jereo'}
               </button>
             </div>
           </div>
