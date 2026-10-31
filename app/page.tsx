@@ -15,215 +15,114 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col justify-between p-4 md:p-8 relative overflow-hidden font-sans">
+    <div style={{ backgroundColor: '#07090e', color: '#f8fafc', minHeight: '100vh', fontFamily: 'sans-serif', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       
-      {/* Background Glow FX */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-orange-600/10 blur-[150px] rounded-full pointer-events-none" />
-
-      {/* Header / Navbar */}
-      <header className="max-w-5xl w-full mx-auto flex justify-between items-center py-4 border-b border-slate-800/80 z-10">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl text-slate-950 font-bold shadow-lg shadow-amber-500/20">
-            🌐
-          </div>
+      {/* Header */}
+      <header style={{ maxWidth: '800px', width: '100%', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1e293b', paddingBottom: '15px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ backgroundColor: '#f59e0b', color: '#07090e', padding: '8px 12px', borderRadius: '10px', fontWeight: 'bold' }}>🌐</div>
           <div>
-            <h1 className="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
-              Ndao Hianatra <span className="text-amber-400">Langue</span>
-            </h1>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Écosystème d'apprentissage</p>
+            <h1 style={{ fontSize: '18px', fontWeight: 'bold', margin: 0 }}>Ndao Hianatra <span style={{ color: '#f59e0b' }}>Langue</span></h1>
+            <p style={{ fontSize: '10px', color: '#94a3b8', margin: 0, textTransform: 'uppercase' }}>Écosystème d'apprentissage</p>
           </div>
         </div>
-
-        <a 
-          href="/admin"
-          className="text-xs font-semibold px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition-all"
-        >
+        <a href="/admin" style={{ fontSize: '12px', padding: '6px 14px', borderRadius: '20px', backgroundColor: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.3)', color: '#fcd34d', textDecoration: 'none' }}>
           Espace Admin
         </a>
       </header>
 
       {/* Main Content */}
-      <div className="max-w-md w-full mx-auto my-8 z-10">
+      <div style={{ maxWidth: '420px', width: '100%', margin: '30px auto' }}>
         
-        {/* Banner Tag */}
-        <div className="flex items-center justify-center gap-2 mb-6">
-          <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/50 text-[11px] font-medium text-amber-400 flex items-center gap-1.5 shadow-inner">
-            ✨ Formation Multilingue 2026
-          </span>
+        <div style={{ textAlign: 'center', marginBottom: '25px' }}>
+          <span style={{ backgroundColor: '#1e293b', color: '#f59e0b', padding: '4px 12px', borderRadius: '20px', fontSize: '11px', fontWeight: 'bold' }}>✨ Formation Multilingue 2026</span>
+          <h2 style={{ fontSize: '26px', fontWeight: '900', marginTop: '15px', marginBottom: '8px' }}>Bienvenue sur Ndao Hianatra</h2>
+          <p style={{ fontSize: '13px', color: '#94a3b8' }}>Accédez à vos cours interactifs et perfectionnez votre niveau dès aujourd'hui.</p>
         </div>
 
-        {/* Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-black text-white tracking-tight">
-            Bienvenue sur <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">Ndao Hianatra</span>
-          </h2>
-          <p className="text-sm text-slate-400 mt-2">
-            Accédez à vos cours interactifs et perfectionnez votre niveau dès aujourd'hui.
-          </p>
-        </div>
-
-        {/* Card Form container */}
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 shadow-2xl shadow-black/50">
+        {/* Card Box */}
+        <div style={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '24px', padding: '24px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5)' }}>
           
-          {/* Tabs Navigation */}
-          <div className="grid grid-cols-2 gap-1 p-1 bg-slate-950/80 rounded-xl border border-slate-800 mb-6">
-            <button
-              onClick={() => setActiveTab('login')}
-              className={`py-2 text-xs font-semibold rounded-lg transition-all ${
-                activeTab === 'login' 
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
+          {/* Tabs */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', backgroundColor: '#020617', padding: '4px', borderRadius: '12px', marginBottom: '20px', border: '1px solid #1e293b' }}>
+            <button onClick={() => setActiveTab('login')} style={{ padding: '10px', fontSize: '12px', fontWeight: 'bold', borderRadius: '8px', border: 'none', backgroundColor: activeTab === 'login' ? '#f59e0b' : 'transparent', color: activeTab === 'login' ? '#07090e' : '#94a3b8', cursor: 'pointer' }}>
               Connexion
             </button>
-            <button
-              onClick={() => setActiveTab('register')}
-              className={`py-2 text-xs font-semibold rounded-lg transition-all ${
-                activeTab === 'register' 
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
+            <button onClick={() => setActiveTab('register')} style={{ padding: '10px', fontSize: '12px', fontWeight: 'bold', borderRadius: '8px', border: 'none', backgroundColor: activeTab === 'register' ? '#f59e0b' : 'transparent', color: activeTab === 'register' ? '#07090e' : '#94a3b8', cursor: 'pointer' }}>
               S'inscrire
             </button>
           </div>
 
-          {/* LOGIN FORM */}
+          {/* Login Form */}
           {activeTab === 'login' && (
-            <form onSubmit={(e) => { e.preventDefault(); setActiveTab('payment'); }} className="space-y-4">
+            <form onSubmit={(e) => { e.preventDefault(); setActiveTab('payment'); }} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Adresse email</label>
-                <input 
-                  type="email" 
-                  required 
-                  placeholder="ex: nom@email.com"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Adresse email</label>
+                <input type="email" required placeholder="ex: nom@email.com" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
-
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Mot de passe</label>
-                <input 
-                  type="password" 
-                  required 
-                  placeholder="••••••••"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Mot de passe</label>
+                <input type="password" required placeholder="••••••••" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
-
-              <button 
-                type="submit"
-                className="w-full mt-2 py-3 px-4 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-amber-500/20"
-              >
+              <button type="submit" style={{ width: '100%', padding: '12px', backgroundColor: '#f59e0b', color: '#07090e', fontWeight: 'bold', borderRadius: '10px', border: 'none', cursor: 'pointer', marginTop: '5px' }}>
                 Se Connecter →
               </button>
             </form>
           )}
 
-          {/* REGISTER FORM */}
+          {/* Register Form */}
           {activeTab === 'register' && (
-            <form onSubmit={(e) => { e.preventDefault(); setActiveTab('payment'); }} className="space-y-4">
+            <form onSubmit={(e) => { e.preventDefault(); setActiveTab('payment'); }} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Nom complet</label>
-                <input 
-                  type="text" 
-                  required 
-                  placeholder="Votre nom"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Nom complet</label>
+                <input type="text" required placeholder="Votre nom" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
-
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Adresse email</label>
-                <input 
-                  type="email" 
-                  required 
-                  placeholder="nom@email.com"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Adresse email</label>
+                <input type="email" required placeholder="nom@email.com" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
-
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Mot de passe</label>
-                <input 
-                  type="password" 
-                  required 
-                  placeholder="Minimum 6 caractères"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Mot de passe</label>
+                <input type="password" required placeholder="Minimum 6 caractères" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
-
-              <button 
-                type="submit"
-                className="w-full mt-2 py-3 px-4 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-amber-500/20"
-              >
+              <button type="submit" style={{ width: '100%', padding: '12px', backgroundColor: '#f59e0b', color: '#07090e', fontWeight: 'bold', borderRadius: '10px', border: 'none', cursor: 'pointer', marginTop: '5px' }}>
                 Créer mon compte →
               </button>
             </form>
           )}
 
-          {/* PAYMENT SECTION */}
+          {/* Payment Section */}
           {activeTab === 'payment' && (
-            <div className="space-y-5">
-              <div className="text-amber-400 text-xs font-bold uppercase tracking-wider border-b border-slate-800 pb-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#f59e0b', borderBottom: '1px solid #1e293b', paddingBottom: '10px' }}>
                 💳 Activation Premium / Mobile Money
               </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => setPaymentMethod('mvola')}
-                  className={`p-3 rounded-xl border text-xs font-bold transition-all text-center ${
-                    paymentMethod === 'mvola'
-                      ? 'bg-amber-500/10 border-amber-500 text-amber-400'
-                      : 'bg-slate-950/40 border-slate-800 text-slate-400'
-                  }`}
-                >
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                <button onClick={() => setPaymentMethod('mvola')} style={{ padding: '10px', borderRadius: '10px', border: paymentMethod === 'mvola' ? '1px solid #f59e0b' : '1px solid #1e293b', backgroundColor: paymentMethod === 'mvola' ? 'rgba(245, 158, 11, 0.1)' : '#020617', color: paymentMethod === 'mvola' ? '#f59e0b' : '#94a3b8', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' }}>
                   MVola
                 </button>
-                <button
-                  onClick={() => setPaymentMethod('orange')}
-                  className={`p-3 rounded-xl border text-xs font-bold transition-all text-center ${
-                    paymentMethod === 'orange'
-                      ? 'bg-orange-500/10 border-orange-500 text-orange-400'
-                      : 'bg-slate-950/40 border-slate-800 text-slate-400'
-                  }`}
-                >
+                <button onClick={() => setPaymentMethod('orange')} style={{ padding: '10px', borderRadius: '10px', border: paymentMethod === 'orange' ? '1px solid #ea580c' : '1px solid #1e293b', backgroundColor: paymentMethod === 'orange' ? 'rgba(234, 88, 12, 0.1)' : '#020617', color: paymentMethod === 'orange' ? '#fb923c' : '#94a3b8', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' }}>
                   Orange Money
                 </button>
               </div>
 
-              <div className="bg-slate-950/80 rounded-2xl p-4 border border-slate-800/80 space-y-3">
-                <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Titulaire du compte</div>
-                <div className="text-sm font-bold text-white">ANDRO FARA NIEZAKA</div>
-                
-                <div className="flex items-center justify-between bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                  <span className="text-sm font-mono text-amber-400 font-bold">0382969974</span>
-                  <button 
-                    onClick={() => handleCopy('0382969974')}
-                    className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded-lg text-xs font-medium transition-colors"
-                  >
+              <div style={{ backgroundColor: '#020617', padding: '14px', borderRadius: '14px', border: '1px solid #1e293b' }}>
+                <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 'bold', textTransform: 'uppercase' }}>Titulaire du compte</div>
+                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#fff', margin: '4px 0 10px 0' }}>ANDRO FARA NIEZAKA</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#0f172a', padding: '8px 12px', borderRadius: '8px', border: '1px solid #1e293b' }}>
+                  <span style={{ fontFamily: 'monospace', color: '#f59e0b', fontWeight: 'bold' }}>0382969974</span>
+                  <button onClick={() => handleCopy('0382969974')} style={{ padding: '4px 10px', backgroundColor: 'rgba(245, 158, 11, 0.2)', color: '#fcd34d', border: 'none', borderRadius: '6px', fontSize: '11px', cursor: 'pointer' }}>
                     {copied ? 'Copie !' : 'Copier'}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1.5">Référence / Solde SMS de confirmation</label>
-                <input 
-                  type="text" 
-                  value={txRef}
-                  onChange={(e) => setTxRef(e.target.value)}
-                  placeholder="ex: Ref: 123456789"
-                  className="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50 transition-colors"
-                />
+                <label style={{ fontSize: '12px', color: '#cbd5e1', display: 'block', marginBottom: '6px' }}>Référence / Solde SMS de confirmation</label>
+                <input type="text" value={txRef} onChange={(e) => setTxRef(e.target.value)} placeholder="ex: Ref: 123456789" style={{ width: '100%', backgroundColor: '#020617', border: '1px solid #1e293b', borderRadius: '10px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
               </div>
 
-              <button 
-                onClick={() => alert("Merci ! Votre demande a été transmise.")}
-                className="w-full py-3 px-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/20"
-              >
+              <button onClick={() => alert("Merci ! Votre demande a été transmise.")} style={{ width: '100%', padding: '12px', backgroundColor: '#10b981', color: '#07090e', fontWeight: 'bold', borderRadius: '10px', border: 'none', cursor: 'pointer' }}>
                 Envoyer la preuve de paiement
               </button>
             </div>
@@ -231,23 +130,11 @@ export default function Home() {
 
         </div>
 
-        {/* Features */}
-        <div className="mt-8 grid grid-cols-2 gap-4 text-xs text-slate-400">
-          <div className="flex items-start gap-2">
-            <span className="text-amber-400">✓</span>
-            <span>Cours interactifs en direct & enregistrés</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="text-amber-400">✓</span>
-            <span>Suivi personnalisé de votre progression</span>
-          </div>
-        </div>
-
       </div>
 
-      <footer className="text-center text-xs text-slate-600 py-4 border-t border-slate-800/40 z-10">
+      <footer style={{ textAlign: 'center', fontSize: '12px', color: '#64748b', borderTop: '1px solid #1e293b', paddingTop: '15px' }}>
         © 2026 Ndao Hianatra Langue. Tous droits réservés.
       </footer>
-    </main>
+    </div>
   )
-      }
+                      }
