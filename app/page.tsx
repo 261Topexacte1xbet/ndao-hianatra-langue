@@ -1,3 +1,5 @@
+"use client";
+
 export default function Home() {
   return (
     <main className="home">
@@ -7,8 +9,9 @@ export default function Home() {
           box-sizing: border-box;
         }
 
-        body {
+        html, body {
           margin: 0;
+          padding: 0;
           background: #08090d;
           font-family: Arial, sans-serif;
         }
@@ -235,96 +238,4 @@ export default function Home() {
           }
 
           .admin {
-            font-size: 10px;
-            padding: 7px 9px;
-          }
-
-          .hero {
-            padding-top: 35px;
-          }
-
-          .globe {
-            font-size: 115px;
-          }
-
-          .description {
-            font-size: 15px;
-          }
-
-          .info {
-            margin: 35px 15px 0;
-            padding: 20px;
-          }
-        }
-      `}</style>
-
-      <header className="header">
-        <div className="brand">
-          <div className="logo">🌍</div>
-          <div>
-            <h1>Ndao Hianatra <span>Langue</span></h1>
-            <p>ÉCOSYSTÈME D'APPRENTISSAGE 2026</p>
-          </div>
-        </div>
-
-        <div className="admin">👤 Admin</div>
-      </header>
-
-      <section className="hero">
-
-        <div className="globe-area">
-          <div className="glow"></div>
-          <div className="globe">🌍</div>
-          <div className="platform"></div>
-        </div>
-
-        <div className="badges">
-          <div className="badge">🎓 Formation Multilingue</div>
-          <div className="badge gray">🏆 Édition 2026</div>
-        </div>
-
-        <h2 className="title">
-          Bienvenue sur<br />
-          <span>Ndao Hianatra</span>
-        </h2>
-
-        <p className="description">
-          Accédez à vos cours interactifs et perfectionnez
-          votre niveau dès aujourd'hui.
-        </p>
-
-        <div className="buttons">
-          <a href="/login" className="btn login">
-            Se connecter →
-          </a>
-
-          <a href="/register" className="btn register">
-            S'inscrire
-          </a>
-        </div>
-
-        <div className="info">
-          <h3>🎯 Ny Tanjon'ny Application</h3>
-
-          <p>
-            Natsangana ity sehatra ity mba hanampiana sy
-            hitarahana ireo olona mbola sahirana na mbola tsy
-            mahay mamolaka ny fiteny vahiny ary ny firesahana
-            an-davan'andro.
-          </p>
-
-          <p>
-            Fampianarana mora idirana, azo ampiharina ary
-            hatrany mba hahafahanao miteny am-pahatokiana.
-          </p>
-        </div>
-
-      </section>
-
-      <footer>
-        © 2026 Ndao Hianatra Langue. Tous droits réservés.
-      </footer>
-
-    </main>
-  );
-}
+            font-size: 10
