@@ -17,7 +17,7 @@ export default function Home() {
           min-height: 100vh;
           color: white;
           background:
-            radial-gradient(ellipse at 50% 35%, #30230b 0%, #101016 45%, #08090d 100%);
+            radial-gradient(ellipse at 50% 40%, #30220b 0%, #111016 40%, #08090d 100%);
           overflow: hidden;
           padding-bottom: 35px;
         }
@@ -28,29 +28,30 @@ export default function Home() {
           padding: 22px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-start;
         }
 
         .brand {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 13px;
         }
 
         .logo {
-          width: 52px;
-          height: 52px;
-          border-radius: 15px;
+          width: 55px;
+          height: 55px;
+          border-radius: 16px;
           background: linear-gradient(135deg, #ffc400, #e87900);
           display: grid;
           place-items: center;
-          font-size: 27px;
-          box-shadow: 0 0 25px #ffae0040;
+          font-size: 29px;
+          box-shadow: 0 0 28px #ffae0050;
         }
 
         .brand h1 {
           font-size: 19px;
           margin: 0;
+          color: white;
         }
 
         .brand h1 span {
@@ -61,54 +62,51 @@ export default function Home() {
           font-size: 9px;
           color: #92929a;
           letter-spacing: 1.5px;
-        }
-
-        .admin {
-          color: #f4c66d;
-          border: 1px solid #a87932;
-          border-radius: 30px;
-          padding: 9px 13px;
-          font-size: 12px;
+          margin-top: 6px;
         }
 
         .hero {
           max-width: 650px;
           margin: auto;
-          padding: 35px 22px;
+          padding: 30px 22px;
           text-align: center;
         }
 
         .globe-area {
           position: relative;
-          height: 245px;
+          height: 270px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: 5px;
         }
 
         .glow {
           position: absolute;
-          width: 200px;
-          height: 200px;
+          width: 230px;
+          height: 230px;
           background: #ffb000;
-          filter: blur(85px);
-          opacity: .25;
+          filter: blur(90px);
+          opacity: .22;
           border-radius: 50%;
         }
 
         .globe {
           position: relative;
           z-index: 2;
-          font-size: 130px;
-          filter: drop-shadow(0 0 25px #ffbd45);
+          font-size: 135px;
+          filter:
+            sepia(1)
+            saturate(2.5)
+            hue-rotate(350deg)
+            drop-shadow(0 0 22px #ffbd45);
         }
 
         .platform {
           position: absolute;
-          bottom: 15px;
-          width: 185px;
-          height: 28px;
+          bottom: 16px;
+          width: 190px;
+          height: 30px;
           border: 2px solid #e9b94c;
           transform: perspective(100px) rotateX(35deg);
           background: linear-gradient(90deg, #49320b, #d49a24, #49320b);
@@ -140,7 +138,7 @@ export default function Home() {
           font-size: clamp(34px, 8vw, 48px);
           font-weight: 900;
           line-height: 1.2;
-          margin: 20px 0;
+          margin: 25px 0;
         }
 
         .title span {
@@ -178,13 +176,17 @@ export default function Home() {
         .login {
           color: #17100a;
           background: linear-gradient(100deg, #e9a900, #ffbd45);
-          box-shadow: 0 0 30px #e5a32235;
+          box-shadow: 0 0 30px #e5a32245;
         }
 
         .register {
           color: white;
           border: 1.5px solid #777783;
           background: transparent;
+        }
+
+        .btn:hover {
+          transform: translateY(-3px);
         }
 
         .info {
@@ -214,29 +216,28 @@ export default function Home() {
           text-align: center;
           color: #686875;
           font-size: 12px;
-          margin-top: 40px;
+          margin-top: 45px;
         }
 
         @media(max-width: 480px) {
           .header {
-            padding: 18px 14px;
+            padding: 18px 15px;
           }
 
           .brand h1 {
-            font-size: 15px;
-          }
-
-          .admin {
-            font-size: 10px;
-            padding: 7px;
+            font-size: 16px;
           }
 
           .hero {
-            padding-top: 30px;
+            padding-top: 25px;
+          }
+
+          .globe-area {
+            height: 245px;
           }
 
           .globe {
-            font-size: 115px;
+            font-size: 120px;
           }
 
           .description {
@@ -254,17 +255,20 @@ export default function Home() {
 
         <header className="header">
           <div className="brand">
+
             <div className="logo">🌍</div>
 
             <div>
               <h1>
                 Ndao Hianatra <span>Langue</span>
               </h1>
-              <p>ÉCOSYSTÈME D'APPRENTISSAGE 2026</p>
-            </div>
-          </div>
 
-          <div className="admin">👤 Admin</div>
+              <p>
+                ÉCOSYSTÈME D'APPRENTISSAGE 2026
+              </p>
+            </div>
+
+          </div>
         </header>
 
         <section className="hero">
@@ -276,6 +280,7 @@ export default function Home() {
           </div>
 
           <div className="badges">
+
             <div className="badge">
               🎓 Formation Multilingue
             </div>
@@ -283,6 +288,7 @@ export default function Home() {
             <div className="badge gray">
               🏆 Édition 2026
             </div>
+
           </div>
 
           <h2 className="title">
@@ -297,6 +303,7 @@ export default function Home() {
           </p>
 
           <div className="buttons">
+
             <a href="/login" className="btn login">
               Se connecter →
             </a>
@@ -304,10 +311,14 @@ export default function Home() {
             <a href="/register" className="btn register">
               S'inscrire
             </a>
+
           </div>
 
           <div className="info">
-            <h3>🎯 Ny Tanjon'ny Application</h3>
+
+            <h3>
+              🎯 Ny Tanjon'ny Application
+            </h3>
 
             <p>
               Natsangana ity sehatra ity mba hanampiana sy
@@ -320,6 +331,7 @@ export default function Home() {
               Fampianarana mora idirana, azo ampiharina ary
               hatrany mba hahafahanao miteny am-pahatokiana.
             </p>
+
           </div>
 
         </section>
@@ -331,4 +343,4 @@ export default function Home() {
       </main>
     </>
   );
-      }
+}
