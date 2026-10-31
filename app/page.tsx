@@ -1,172 +1,118 @@
-'use client'
-
-import React from 'react'
-
 export default function Home() {
   return (
-    <div style={{
-      backgroundColor: '#07090e',
-      color: '#ffffff',
-      minHeight: '100vh',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      padding: '24px 16px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      boxSizing: 'border-box'
-    }}>
-      
-      {/* Top Header with Admin Badge */}
-      <header style={{ maxWidth: '440px', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{
-            width: '36px',
-            height: '36px',
-            background: 'linear-gradient(135deg, #f59e0b, #ea580c)',
-            borderRadius: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '18px',
-            boxShadow: '0 0 16px rgba(245, 158, 11, 0.4)'
-          }}>
+    <main className="min-h-screen bg-[#08090d] text-white overflow-hidden">
+
+      {/* HEADER */}
+      <header className="flex items-center justify-between px-6 py-6 max-w-6xl mx-auto">
+        <div className="flex items-center gap-3">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-600 flex items-center justify-center text-3xl shadow-lg shadow-yellow-500/20">
             🌍
           </div>
+
           <div>
-            <h1 style={{ fontSize: '15px', fontWeight: '800', margin: 0, color: '#fff' }}>
-              Ndao Hianatra <span style={{ color: '#f59e0b' }}>Langue</span>
+            <h1 className="text-xl font-extrabold">
+              Ndao Hianatra <span className="text-yellow-400">Langue</span>
             </h1>
-            <p style={{ fontSize: '8px', color: '#94a3b8', margin: 0, textTransform: 'uppercase', fontWeight: '600' }}>
-              Écosystème d'apprentissage
+            <p className="text-[10px] tracking-[2px] text-gray-400">
+              ÉCOSYSTÈME D'APPRENTISSAGE 2026
             </p>
           </div>
         </div>
 
-        {/* Admin Button */}
-        <button 
-          onClick={() => alert('Espace Admin')}
-          style={{
-            background: 'rgba(30, 41, 59, 0.6)',
-            border: '1px solid rgba(245, 158, 11, 0.3)',
-            color: '#f59e0b',
-            padding: '6px 14px',
-            borderRadius: '20px',
-            fontSize: '11px',
-            fontWeight: '700',
-            cursor: 'pointer'
-          }}
-        >
+        <span className="hidden sm:block text-yellow-400 border border-yellow-500/30 rounded-full px-4 py-2 text-sm">
           👤 Admin
-        </button>
+        </span>
       </header>
 
-      {/* Main Hero Area */}
-      <div style={{ maxWidth: '420px', width: '100%', textAlign: 'center', margin: 'auto', padding: '20px 0' }}>
-        
-        {/* Globe 3D Box */}
-        <div style={{
-          width: '84px',
-          height: '84px',
-          background: 'linear-gradient(135deg, #1e293b, #0f172a)',
-          border: '1px solid rgba(245, 158, 11, 0.45)',
-          borderRadius: '26px',
-          margin: '0 auto 24px auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '40px',
-          boxShadow: '0 0 35px rgba(245, 158, 11, 0.25)'
-        }}>
-          🌐
+      {/* HERO */}
+      <section className="max-w-3xl mx-auto px-6 pt-14 pb-20 text-center">
+
+        {/* GOLDEN GLOBE */}
+        <div className="relative flex justify-center mb-12">
+          <div className="absolute w-64 h-64 bg-yellow-500/10 blur-[90px] rounded-full"></div>
+
+          <div className="relative">
+            <div className="text-[120px] sm:text-[155px] drop-shadow-[0_0_30px_rgba(255,190,40,0.65)]">
+              🌍
+            </div>
+
+            <div className="w-48 sm:w-56 h-5 mx-auto rounded-full bg-gradient-to-r from-yellow-900 via-yellow-300 to-yellow-900 shadow-[0_0_35px_rgba(255,190,40,0.5)]"></div>
+          </div>
         </div>
 
-        {/* Badges */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
-          <span style={{ backgroundColor: 'rgba(30, 41, 59, 0.8)', color: '#f59e0b', padding: '5px 14px', borderRadius: '20px', fontSize: '10px', fontWeight: '700' }}>
+        {/* BADGES */}
+        <div className="flex justify-center flex-wrap gap-3 mb-8">
+          <span className="rounded-full bg-[#171c2d] border border-yellow-500/20 px-5 py-2 text-sm text-yellow-400 font-semibold">
             🎓 Formation Multilingue
           </span>
-          <span style={{ backgroundColor: 'rgba(30, 41, 59, 0.8)', color: '#94a3b8', padding: '5px 14px', borderRadius: '20px', fontSize: '10px', fontWeight: '700' }}>
+
+          <span className="rounded-full bg-[#171c2d] border border-gray-600/40 px-5 py-2 text-sm text-gray-300">
             🏆 Édition 2026
           </span>
         </div>
 
-        {/* Title */}
-        <h2 style={{ fontSize: '28px', fontWeight: '900', margin: '0 0 12px 0', lineHeight: '1.25' }}>
-          Bienvenue sur <br />
-          <span style={{ background: 'linear-gradient(to right, #f59e0b, #fb923c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        {/* TITLE */}
+        <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-6">
+          Bienvenue sur
+          <br />
+          <span className="bg-gradient-to-r from-yellow-300 to-orange-500 bg-clip-text text-transparent">
             Ndao Hianatra
           </span>
         </h2>
-        
-        <p style={{ fontSize: '13px', color: '#94a3b8', margin: '0 0 24px 0', lineHeight: '1.6' }}>
-          Accédez à vos cours interactifs et perfectionnez votre niveau dès aujourd'hui.
+
+        {/* DESCRIPTION */}
+        <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-10">
+          Accédez à vos cours interactifs et perfectionnez
+          votre niveau dès aujourd'hui.
         </p>
 
-        {/* Bokotra Voalohany: Hanomboka izao */}
-        <button 
-          onClick={() => window.location.href = '/cours'}
-          style={{
-            width: '100%',
-            padding: '15px',
-            background: 'linear-gradient(135deg, #f59e0b, #ea580c)',
-            color: '#07090e',
-            fontWeight: '900',
-            fontSize: '14px',
-            borderRadius: '14px',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 8px 25px rgba(245, 158, 11, 0.35)',
-            marginBottom: '12px'
-          }}
-        >
-          Hanomboka izao →
-        </button>
+        {/* BUTTONS */}
+        <div className="max-w-md mx-auto space-y-4">
 
-        {/* Bokotra Faharoa: S'inscrire (Miverina amin'ilay sary) */}
-        <button 
-          onClick={() => alert('Fizarana S\'inscrire')}
-          style={{
-            width: '100%',
-            padding: '14px',
-            backgroundColor: 'rgba(30, 41, 59, 0.4)',
-            color: '#cbd5e1',
-            fontWeight: '700',
-            fontSize: '14px',
-            borderRadius: '14px',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            cursor: 'pointer',
-            marginBottom: '28px'
-          }}
-        >
-          S'inscrire
-        </button>
+          <a
+            href="/login"
+            className="block w-full rounded-2xl py-5 text-lg font-extrabold text-black bg-gradient-to-r from-yellow-400 to-orange-500 shadow-[0_8px_30px_rgba(245,158,11,0.25)] hover:scale-[1.02] transition"
+          >
+            Se connecter →
+          </a>
 
-        {/* Tanjona Card */}
-        <div style={{
-          backgroundColor: 'rgba(15, 23, 42, 0.75)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '22px',
-          padding: '20px',
-          textAlign: 'left'
-        }}>
-          <h3 style={{ fontSize: '13px', color: '#f59e0b', fontWeight: '800', margin: '0 0 10px 0' }}>
-            🎯 Ny Tanjon'ny Application
-          </h3>
-          <p style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 10px 0' }}>
-            Natsangana ity sehatra ity mba <b>hanampiana sy hitarihana ireo olona mbola sahirana na mbola tsy mahay mamolaka ny fiteny vahiny</b> ary ny firesahana an-davan'andro.
-          </p>
-          <p style={{ fontSize: '12px', color: '#94a3b8', lineHeight: '1.6', margin: 0 }}>
-            Fampianarana mora indrindra, azo ampiharina avy hatrany mba ahafahanao miteny am-pahatokiana.
-          </p>
+          <a
+            href="/register"
+            className="block w-full rounded-2xl py-4 border border-gray-600 text-gray-200 font-semibold hover:border-yellow-400 hover:text-yellow-400 transition"
+          >
+            S'inscrire
+          </a>
+
         </div>
 
-      </div>
+        {/* INFORMATION CARD */}
+        <div className="mt-12 bg-[#111629] border border-yellow-500/20 rounded-3xl p-6 text-left shadow-xl">
 
-      <footer style={{ fontSize: '11px', color: '#64748b' }}>
+          <h3 className="text-yellow-400 font-bold text-lg mb-4">
+            🎯 Ny Tanjon'ny Application
+          </h3>
+
+          <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+            Natsangana ity sehatra ity mba hanampiana sy
+            hitarahana ireo olona mbola sahirana na mbola tsy
+            mahay mamolaka ny fiteny vahiny ary ny firesahana
+            an-davan'andro.
+          </p>
+
+          <p className="text-gray-400 mt-4 text-sm leading-relaxed">
+            Fampianarana mora idirana, azo ampiharina ary
+            hatrany mba hahafahanao miteny am-pahatokiana.
+          </p>
+
+        </div>
+
+      </section>
+
+      {/* FOOTER */}
+      <footer className="text-center text-gray-600 text-xs pb-8">
         © 2026 Ndao Hianatra Langue. Tous droits réservés.
       </footer>
 
-    </div>
-  )
+    </main>
+  );
         }
