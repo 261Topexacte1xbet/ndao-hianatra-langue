@@ -16,9 +16,10 @@ export default function RegisterPage() {
     setLoading(true)
     setMessage('')
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://qkdpts.supabase.co'
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+    const supabase = createClient(
+      'https://qkdpts.supabase.co',
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+    )
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -103,4 +104,4 @@ export default function RegisterPage() {
       </div>
     </div>
   )
-            }
+  }
