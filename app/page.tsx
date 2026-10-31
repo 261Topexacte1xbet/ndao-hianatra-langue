@@ -1,10 +1,7 @@
-"use client";
-
 export default function Home() {
   return (
-    <main className="home">
-
-      <style jsx global>{`
+    <>
+      <style>{`
         * {
           box-sizing: border-box;
         }
@@ -18,9 +15,9 @@ export default function Home() {
 
         .home {
           min-height: 100vh;
-          background:
-            radial-gradient(circle at 50% 35%, #29200e 0%, #0b0c11 38%, #08090d 75%);
           color: white;
+          background:
+            radial-gradient(ellipse at 50% 35%, #30230b 0%, #101016 45%, #08090d 100%);
           overflow: hidden;
           padding-bottom: 35px;
         }
@@ -28,7 +25,7 @@ export default function Home() {
         .header {
           max-width: 850px;
           margin: auto;
-          padding: 25px 22px;
+          padding: 22px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -64,57 +61,54 @@ export default function Home() {
           font-size: 9px;
           color: #92929a;
           letter-spacing: 1.5px;
-          margin-top: 5px;
         }
 
         .admin {
-          border: 1px solid #a87932;
           color: #f4c66d;
+          border: 1px solid #a87932;
           border-radius: 30px;
-          padding: 9px 15px;
+          padding: 9px 13px;
           font-size: 12px;
         }
 
         .hero {
           max-width: 650px;
           margin: auto;
-          padding: 55px 22px 25px;
+          padding: 35px 22px;
           text-align: center;
         }
 
         .globe-area {
           position: relative;
-          width: 240px;
           height: 245px;
-          margin: 0 auto 20px;
           display: flex;
           align-items: center;
           justify-content: center;
+          margin-bottom: 20px;
         }
 
         .glow {
           position: absolute;
-          width: 220px;
-          height: 220px;
-          background: #f5a900;
+          width: 200px;
+          height: 200px;
+          background: #ffb000;
           filter: blur(85px);
-          opacity: 0.18;
+          opacity: .25;
           border-radius: 50%;
         }
 
         .globe {
           position: relative;
-          font-size: 135px;
-          filter: sepia(1) saturate(2.5) hue-rotate(350deg)
-            drop-shadow(0 0 20px #ffc13b);
           z-index: 2;
+          font-size: 130px;
+          filter: drop-shadow(0 0 25px #ffbd45);
         }
 
         .platform {
           position: absolute;
-          bottom: 17px;
+          bottom: 15px;
           width: 185px;
-          height: 27px;
+          height: 28px;
           border: 2px solid #e9b94c;
           transform: perspective(100px) rotateX(35deg);
           background: linear-gradient(90deg, #49320b, #d49a24, #49320b);
@@ -124,8 +118,8 @@ export default function Home() {
         .badges {
           display: flex;
           justify-content: center;
-          gap: 10px;
           flex-wrap: wrap;
+          gap: 10px;
           margin: 20px 0 30px;
         }
 
@@ -138,7 +132,7 @@ export default function Home() {
           color: #e8bd62;
         }
 
-        .badge.gray {
+        .gray {
           color: #ddd;
         }
 
@@ -150,7 +144,6 @@ export default function Home() {
         }
 
         .title span {
-          color: #ffb52e;
           background: linear-gradient(90deg, #ffe18a, #ff9e16);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -179,7 +172,7 @@ export default function Home() {
           text-decoration: none;
           font-size: 17px;
           font-weight: bold;
-          transition: 0.3s;
+          transition: .3s;
         }
 
         .login {
@@ -192,10 +185,6 @@ export default function Home() {
           color: white;
           border: 1.5px solid #777783;
           background: transparent;
-        }
-
-        .btn:hover {
-          transform: translateY(-3px);
         }
 
         .info {
@@ -225,17 +214,121 @@ export default function Home() {
           text-align: center;
           color: #686875;
           font-size: 12px;
-          margin-top: 45px;
+          margin-top: 40px;
         }
 
-        @media (max-width: 480px) {
+        @media(max-width: 480px) {
           .header {
-            padding: 18px 15px;
+            padding: 18px 14px;
           }
 
           .brand h1 {
-            font-size: 16px;
+            font-size: 15px;
           }
 
           .admin {
-            font-size: 10
+            font-size: 10px;
+            padding: 7px;
+          }
+
+          .hero {
+            padding-top: 30px;
+          }
+
+          .globe {
+            font-size: 115px;
+          }
+
+          .description {
+            font-size: 15px;
+          }
+
+          .info {
+            margin: 35px 15px 0;
+            padding: 20px;
+          }
+        }
+      `}</style>
+
+      <main className="home">
+
+        <header className="header">
+          <div className="brand">
+            <div className="logo">🌍</div>
+
+            <div>
+              <h1>
+                Ndao Hianatra <span>Langue</span>
+              </h1>
+              <p>ÉCOSYSTÈME D'APPRENTISSAGE 2026</p>
+            </div>
+          </div>
+
+          <div className="admin">👤 Admin</div>
+        </header>
+
+        <section className="hero">
+
+          <div className="globe-area">
+            <div className="glow"></div>
+            <div className="globe">🌍</div>
+            <div className="platform"></div>
+          </div>
+
+          <div className="badges">
+            <div className="badge">
+              🎓 Formation Multilingue
+            </div>
+
+            <div className="badge gray">
+              🏆 Édition 2026
+            </div>
+          </div>
+
+          <h2 className="title">
+            Bienvenue sur
+            <br />
+            <span>Ndao Hianatra</span>
+          </h2>
+
+          <p className="description">
+            Accédez à vos cours interactifs et perfectionnez
+            votre niveau dès aujourd'hui.
+          </p>
+
+          <div className="buttons">
+            <a href="/login" className="btn login">
+              Se connecter →
+            </a>
+
+            <a href="/register" className="btn register">
+              S'inscrire
+            </a>
+          </div>
+
+          <div className="info">
+            <h3>🎯 Ny Tanjon'ny Application</h3>
+
+            <p>
+              Natsangana ity sehatra ity mba hanampiana sy
+              hitarahana ireo olona mbola sahirana na mbola tsy
+              mahay mamolaka ny fiteny vahiny ary ny firesahana
+              an-davan'andro.
+            </p>
+
+            <p>
+              Fampianarana mora idirana, azo ampiharina ary
+              hatrany mba hahafahanao miteny am-pahatokiana.
+            </p>
+          </div>
+
+        </section>
+
+        <footer>
+          © 2026 Ndao Hianatra Langue. Tous droits réservés.
+        </footer>
+
+      </main>
+    </>
+  );
+      }
